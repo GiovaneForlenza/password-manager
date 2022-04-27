@@ -1,0 +1,108 @@
+$clr-primary: #00c9a7;
+$clr-text-gray: #c4c4c4;
+$clr-primary-light: #adffff;
+$clr-primary-dark: #091034;
+
+$clr-form-background: #fcfcfc;
+
+.register-container,
+.login-container {
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-sizing: border-box;
+  background-color: $clr-form-background;
+  width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  filter: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
+  .page-title-container {
+    margin: 10px 0;
+    font-size: 40px;
+    font-weight: bold;
+    color: $clr-primary;
+  }
+  .form-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    .line {
+      width: auto;
+      margin: 20px 0;
+      width: 100%;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      flex-direction: column;
+      .input-container {
+        position: relative;
+        span {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          font-size: 20px;
+          transition: all 0.2s;
+          padding: 3px;
+          box-sizing: border-box;
+          background: #fff;
+          color: #000;
+          &:hover {
+            cursor: text;
+          }
+        }
+        input {
+          width: 95%;
+          height: 50px;
+          font-size: 25px;
+          padding: 5px 0px 5px 20px;
+          transition: all 0.2s;
+          // box-sizing: border-box;
+          border: 2px #ccc solid;
+          &:hover {
+            border-color: $clr-primary-dark;
+          }
+          &:active {
+            border-color: $clr-primary-dark;
+          }
+          &:focus {
+            border-color: $clr-primary-dark;
+          }
+        }
+        input:focus + span,
+        input:not(:placeholder-shown) + span {
+          font-size: 15px;
+          top: -10px;
+          background: $clr-form-background;
+        }
+      }
+      .button-container {
+        background-color: $clr-primary;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        font-size: 25px;
+        padding: 10px;
+        border-radius: 5px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .create-acc-container {
+        margin-top: 20px;
+        text-align: left;
+        font-size: 17px;
+        color: $clr-text-gray;
+        span {
+          color: $clr-primary;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
