@@ -1,9 +1,16 @@
 import React from "react";
 import "../style/pages/login.scss";
 
+import axios from "axios";
+
 function Login({ setShowPage }) {
   function handleClick() {
     setShowPage("register");
+  }
+  function handleLoginClick() {
+    axios.get("http://localhost:3001/getUsers").then((response) => {
+      console.log(response.data);
+    });
   }
   return (
     <div className="login-container">
@@ -26,7 +33,9 @@ function Login({ setShowPage }) {
           {/* <div className="error password">Password is incorrect</div> */}
         </div>
         <div className="line">
-          <div className="button-container">Login</div>
+          <div className="button-container" onClick={handleLoginClick}>
+            Login
+          </div>
           <div className="create-acc-container">
             New here? <span onClick={handleClick}>Create an account</span>
           </div>
