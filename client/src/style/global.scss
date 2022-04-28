@@ -79,6 +79,16 @@ $clr-form-background: #fcfcfc;
           background: $clr-form-background;
         }
       }
+      .error {
+        margin-top: 5px;
+        padding-left: 15px;
+        text-align: left;
+        font-size: 15px;
+        color: red;
+      }
+      .error.hidden {
+        display: none;
+      }
       .button-container {
         background-color: $clr-primary;
         color: #fff;

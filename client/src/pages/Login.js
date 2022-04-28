@@ -8,9 +8,11 @@ function Login({ setShowPage }) {
     setShowPage("register");
   }
   function handleLoginClick() {
-    axios.get("http://localhost:3001/getUsers").then((response) => {
-      console.log(response.data);
-    });
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/getUsers`)
+      .then((response) => {
+        console.log(response.data);
+      });
   }
   return (
     <div className="login-container">
