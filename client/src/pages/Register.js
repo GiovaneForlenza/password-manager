@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import "../style/pages/register.scss";
 const bcrypt = require("bcryptjs");
@@ -42,10 +43,14 @@ function Register({ setShowPage }) {
   async function handleRegister(e) {
     e.preventDefault();
     if (areInputFieldsValid()) {
-      let password = document.getElementById("register-password");
+      let username = document.getElementById("register-username").value;
+      let password = document.getElementById("register-password").value;
       const salt = await bcrypt.genSalt();
-      let saltPassword = await bcrypt.hash(password.value, salt);
-      console.log(saltPassword);
+      let saltPassword = await bcrypt.hash(password, salt);
+      axios.post(`${process.env.REACT_APP_SERVER_URL}/registerUser`, {
+        username,
+        saltPassword,
+      });
     }
   }
 

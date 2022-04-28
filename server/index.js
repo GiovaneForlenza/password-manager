@@ -33,6 +33,15 @@ app.get("/getUsers", (req, res) => {
   });
 });
 
+app.post("/registerUser", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.saltPassword;
+  db.query("INSERT INTO users(username, password)VALUES(?,?)", [
+    username,
+    password,
+  ]);
+});
+
 app.listen(3001, () => {
   console.log("running server on 3001");
 });
