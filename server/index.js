@@ -2,6 +2,9 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
+
 require("dotenv").config();
 
 app.use(express.json());
@@ -16,7 +19,8 @@ app.use(
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
     next();
-  }
+  },
+  cookieParser()
 );
 
 const db = mysql.createConnection({
@@ -33,6 +37,13 @@ app.get("/getUsers", (req, res) => {
   });
 });
 
+const maxAge = 3 * 24 * 60 * 60;
+function createToken(id) {
+  return jwt.sign({ id }, process.env.TOKEN_SECRET, {
+    expiresIn: maxAge,
+  });
+}
+
 app.post("/registerUser", (req, res) => {
   const username = req.body.username;
   const password = req.body.saltPassword;
@@ -40,6 +51,16 @@ app.post("/registerUser", (req, res) => {
     username,
     password,
   ]);
+  let user;
+
+  db.query(
+    `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`,
+    (error, rows) => {
+      if (error) throw error;
+      user = rows;
+    }
+  );
+  console.log("a", user);
 });
 
 app.listen(3001, () => {

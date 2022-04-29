@@ -20,9 +20,11 @@ $clr-form-background: #fcfcfc;
   filter: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
   .page-title-container {
     margin: 10px 0;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: bold;
-    color: $clr-primary;
+    // color: $clr-primary;
+    text-align: left;
+    width: 80%;
   }
   .form-container {
     display: flex;

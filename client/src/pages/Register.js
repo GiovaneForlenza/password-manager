@@ -1,48 +1,22 @@
-import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import "../style/pages/register.scss";
+import { ErrorHandlingContext } from "../contexts/ErrorHandlingContext";
+
+import axios from "axios";
+
 const bcrypt = require("bcryptjs");
 
 function Register({ setShowPage }) {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
+  const { areLoginOrRegisterInputFieldsValid } =
+    useContext(ErrorHandlingContext);
 
   function handleClick() {
     setShowPage("login");
   }
 
-  function areInputFieldsValid() {
-    let areInputFieldsValid = false;
-    let username = document.getElementById("register-username");
-    let password = document.getElementById("register-password");
-    if (username.value === "") {
-      document
-        .getElementById("register-username-error")
-        .classList.remove("hidden");
-    } else {
-      document
-        .getElementById("register-username-error")
-        .classList.add("hidden");
-    }
-    if (password.value === "") {
-      document
-        .getElementById("register-password-error")
-        .classList.remove("hidden");
-    } else {
-      document
-        .getElementById("register-password-error")
-        .classList.add("hidden");
-    }
-    if (username.value !== "" && password.value !== "") {
-      return true;
-    }
-
-    return areInputFieldsValid;
-  }
-
   async function handleRegister(e) {
     e.preventDefault();
-    if (areInputFieldsValid()) {
+    if (areLoginOrRegisterInputFieldsValid("register")) {
       let username = document.getElementById("register-username").value;
       let password = document.getElementById("register-password").value;
       const salt = await bcrypt.genSalt();
@@ -51,6 +25,9 @@ function Register({ setShowPage }) {
         username,
         saltPassword,
       });
+      alert("Account was registered. You can now log in");
+      // username = " ";
+      // password = " ";
     }
   }
 
