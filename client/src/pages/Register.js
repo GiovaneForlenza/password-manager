@@ -3,12 +3,14 @@ import "../style/pages/register.scss";
 import { ErrorHandlingContext } from "../contexts/ErrorHandlingContext";
 
 import axios from "axios";
+import { GlobalFunctionsContext } from "../contexts/GlobalFunctionsContext";
 
 const bcrypt = require("bcryptjs");
 
 function Register({ setShowPage }) {
   const { areLoginOrRegisterInputFieldsValid } =
     useContext(ErrorHandlingContext);
+  const { clearFormFields } = useContext(GlobalFunctionsContext);
 
   function handleClick() {
     setShowPage("login");
@@ -17,15 +19,22 @@ function Register({ setShowPage }) {
   async function handleRegister(e) {
     e.preventDefault();
     if (areLoginOrRegisterInputFieldsValid("register")) {
-      let username = document.getElementById("register-username").value;
-      let password = document.getElementById("register-password").value;
+      const id = Math.random().toString(16).slice(2);
+      const username = document.getElementById("register-username").value;
+      const password = document.getElementById("register-password").value;
       const salt = await bcrypt.genSalt();
-      let saltPassword = await bcrypt.hash(password, salt);
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/registerUser`, {
-        username,
-        saltPassword,
-      });
-      alert("Account was registered. You can now log in");
+      const saltPassword = await bcrypt.hash(password, salt);
+      try {
+        axios.post(`${process.env.REACT_APP_SERVER_URL}/registerUser`, {
+          id,
+          username,
+          saltPassword,
+        });
+        alert("Account was registered. You can now log in");
+        clearFormFields("register");
+      } catch (err) {
+        console.log(err);
+      }
       // username = " ";
       // password = " ";
     }

@@ -4,13 +4,22 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ErrorHandlingContextProvider } from "./contexts/ErrorHandlingContext";
+import { GlobalFunctionsContextProvider } from "./contexts/GlobalFunctionsContext";
+import { UserContextProvider } from "./contexts/UserContext";
+import { PasswordContextProvider } from "./contexts/PasswordContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ErrorHandlingContextProvider>
-      <App />
-    </ErrorHandlingContextProvider>
+    <GlobalFunctionsContextProvider>
+      <ErrorHandlingContextProvider>
+        <UserContextProvider>
+          <PasswordContextProvider>
+            <App />
+          </PasswordContextProvider>
+        </UserContextProvider>
+      </ErrorHandlingContextProvider>
+    </GlobalFunctionsContextProvider>
   </React.StrictMode>
 );
 

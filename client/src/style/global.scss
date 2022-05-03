@@ -26,94 +26,96 @@ $clr-form-background: #fcfcfc;
     text-align: left;
     width: 80%;
   }
-  .form-container {
+}
+
+.form-container {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  .line {
+    width: auto;
+    margin: 20px 0;
+    width: 100%;
     display: flex;
-    justify-content: flex-start;
+    align-items: stretch;
+    justify-content: stretch;
     flex-direction: column;
-    align-items: center;
-    width: 80%;
-    .line {
-      width: auto;
-      margin: 20px 0;
-      width: 100%;
-      display: flex;
-      align-items: stretch;
-      justify-content: stretch;
-      flex-direction: column;
-      .input-container {
-        position: relative;
-        span {
-          position: absolute;
-          top: 15px;
-          left: 15px;
-          font-size: 20px;
-          transition: all 0.2s;
-          padding: 3px;
-          box-sizing: border-box;
-          background: #fff;
-          color: #000;
-          &:hover {
-            cursor: text;
-          }
-        }
-        input {
-          width: 95%;
-          height: 50px;
-          font-size: 25px;
-          padding: 5px 0px 5px 20px;
-          transition: all 0.2s;
-          // box-sizing: border-box;
-          border: 2px #ccc solid;
-          &:hover {
-            border-color: $clr-primary-dark;
-          }
-          &:active {
-            border-color: $clr-primary-dark;
-          }
-          &:focus {
-            border-color: $clr-primary-dark;
-          }
-        }
-        input:focus + span,
-        input:not(:placeholder-shown) + span {
-          font-size: 15px;
-          top: -10px;
-          background: $clr-form-background;
-        }
-      }
-      .error {
-        margin-top: 5px;
-        padding-left: 15px;
-        text-align: left;
-        font-size: 15px;
-        color: red;
-      }
-      .error.hidden {
-        display: none;
-      }
-      .button-container {
-        background-color: $clr-primary;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 40px;
-        font-size: 25px;
-        padding: 10px;
-        border-radius: 5px;
+    .input-container {
+      position: relative;
+      span {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 20px;
+        transition: all 0.2s;
+        padding: 3px;
+        box-sizing: border-box;
+        background: #fff;
+        color: #000;
+        user-select: none;
         &:hover {
-          cursor: pointer;
+          cursor: text;
         }
       }
-      .create-acc-container {
-        margin-top: 20px;
-        text-align: left;
-        font-size: 17px;
-        color: $clr-text-gray;
-        span {
-          color: $clr-primary;
-          cursor: pointer;
+      input {
+        width: 95%;
+        height: 50px;
+        font-size: 25px;
+        padding: 5px 0px 5px 20px;
+        transition: all 0.2s;
+        // box-sizing: border-box;
+        border: 2px #ccc solid;
+        &:hover {
+          border-color: $clr-primary-dark;
         }
+        &:active {
+          border-color: $clr-primary-dark;
+        }
+        &:focus {
+          border-color: $clr-primary-dark;
+        }
+      }
+      input:focus + span,
+      input:not(:placeholder-shown) + span {
+        font-size: 15px;
+        top: -10px;
+        background: $clr-form-background;
+      }
+    }
+    .error {
+      margin-top: 5px;
+      padding-left: 15px;
+      text-align: left;
+      font-size: 15px;
+      color: red;
+    }
+    .error.hidden {
+      display: none;
+    }
+    .button-container {
+      background-color: $clr-primary;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      font-size: 25px;
+      padding: 10px;
+      border-radius: 5px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .create-acc-container {
+      margin-top: 20px;
+      text-align: left;
+      font-size: 17px;
+      color: $clr-text-gray;
+      span {
+        color: $clr-primary;
+        cursor: pointer;
       }
     }
   }
