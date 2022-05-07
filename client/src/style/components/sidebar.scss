@@ -1,0 +1,47 @@
+@import "../global.scss";
+
+.sidebar-container {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 300px;
+  height: 90vh;
+  text-align: left;
+  .line {
+    margin: 20px 0;
+    .create-new-password-container {
+    }
+    .my-vault-container,
+    .create-new-password-container {
+      // border: 1px solid #000;
+      padding: 10px;
+      box-sizing: border-box;
+      width: 80%;
+      border-radius: 50px;
+      display: inline;
+      margin-top: 40px;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      .icon,
+      .text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .icon {
+        font-size: 25px;
+        margin-right: 10px;
+      }
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    .active {
+      color: $clr-primary;
+      border-color: $clr-primary;
+      background-color: $clr-form-background;
+      filter: $dropShadow;
+    }
+  }
+}

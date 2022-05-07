@@ -1,0 +1,53 @@
+@import "../global.scss";
+.column.password,
+.flex,
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.service-container {
+  .column.name {
+    width: 40%;
+    .flex {
+      justify-content: flex-start;
+      .left {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+        border-radius: 50px;
+        font-size: 20px;
+        justify-content: center;
+        span {
+          color: white;
+        }
+      }
+    }
+    .name-container {
+      font-size: 20px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  .column.password {
+    overflow: hidden;
+    justify-content: space-between;
+    overflow-y: auto;
+    width: 95%;
+    .password-container {
+      display: inline-block;
+      width: 400px;
+      overflow: hidden;
+      font-size: 20px;
+    }
+    .show-hide-password-container {
+      font-size: 20px;
+      // border: 1px solid #000;
+      line-height: 20px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

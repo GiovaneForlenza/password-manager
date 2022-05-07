@@ -7,6 +7,7 @@ import { ErrorHandlingContextProvider } from "./contexts/ErrorHandlingContext";
 import { GlobalFunctionsContextProvider } from "./contexts/GlobalFunctionsContext";
 import { UserContextProvider } from "./contexts/UserContext";
 import { PasswordContextProvider } from "./contexts/PasswordContext";
+import { SelectedServiceContextProvider } from "./contexts/SelectedServiceContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,7 +16,9 @@ root.render(
       <ErrorHandlingContextProvider>
         <UserContextProvider>
           <PasswordContextProvider>
-            <App />
+            <SelectedServiceContextProvider>
+              <App />
+            </SelectedServiceContextProvider>
           </PasswordContextProvider>
         </UserContextProvider>
       </ErrorHandlingContextProvider>

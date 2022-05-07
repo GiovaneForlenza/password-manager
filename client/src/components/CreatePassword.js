@@ -3,9 +3,12 @@ import { ErrorHandlingContext } from "../contexts/ErrorHandlingContext";
 import FormLineInput from "./FormLineInput";
 
 import "../style/global.scss";
+import "../style/components/create-password.scss";
 
 import { UserContext } from "../contexts/UserContext";
 import { GlobalFunctionsContext } from "../contexts/GlobalFunctionsContext";
+
+import { encrypt, decrypt } from "../handlers/EncryptionHandler";
 
 import axios from "axios";
 const bcrypt = require("bcryptjs");
@@ -40,31 +43,41 @@ function CreatePassword() {
         "create-password-service-name"
       ).value;
 
-      const salt = await bcrypt.genSalt();
-      const encryptedPassword = await bcrypt.hash(password, salt);
+      encrypt("aaa");
 
-      const dateTime = getCurrentDateTime();
+      // const salt = await bcrypt.genSalt();
+      // const encryptedPassword = await bcrypt.hash(password, salt);
 
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/createServicePassword`, {
-        passwordId,
-        userIdLogged,
-        username,
-        encryptedPassword,
-        serviceName,
-        dateTime,
-      });
+      // const dateTime = getCurrentDateTime();
+
+      // axios.post(`${process.env.REACT_APP_SERVER_URL}/createServicePassword`, {
+      //   passwordId,
+      //   userIdLogged,
+      //   username,
+      //   encryptedPassword,
+      //   serviceName,
+      //   dateTime,
+      // });
     }
   }
 
   return (
     <div className="create-password-container">
+      <h1>Save a new Password</h1>
       <form className="form-container">
         <FormLineInput
           inputType={"text"}
+          inputId={"create-password-service-name"}
+          spanText={"Title"}
+          errorId={"create-password-no-service-name-error"}
+          errorText={"Service title is required."}
+        />
+        <FormLineInput
+          inputType={"text"}
           inputId={"create-password-username"}
-          spanText={"Username/Email"}
+          spanText={"Username/Login"}
           errorId={"create-password-no-username-error"}
-          errorText={"Username/Email is required."}
+          errorText={"Username/Login is required."}
         />
         <FormLineInput
           inputType={"password"}
@@ -72,13 +85,6 @@ function CreatePassword() {
           spanText={"Password"}
           errorId={"create-password-no-password-error"}
           errorText={"Password is required."}
-        />
-        <FormLineInput
-          inputType={"text"}
-          inputId={"create-password-service-name"}
-          spanText={"Service name / Link"}
-          errorId={"create-password-no-service-name-error"}
-          errorText={"Service Name / Link is required."}
         />
         <FormLineInput
           inputType={"submit"}

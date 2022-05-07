@@ -1,9 +1,36 @@
 $clr-primary: #00c9a7;
+$clr-primary-dark: #00a589;
 $clr-text-gray: #c4c4c4;
-$clr-primary-light: #adffff;
-$clr-primary-dark: #091034;
+$clr-primary-light: #60e1e1;
 
 $clr-form-background: #fcfcfc;
+
+$dropShadow: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
+
+* {
+  /* width */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    padding: 10px;
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $clr-primary;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    cursor: pointer;
+    background: $clr-primary-dark;
+  }
+}
 
 .register-container,
 .login-container {
@@ -17,7 +44,7 @@ $clr-form-background: #fcfcfc;
   justify-content: center;
   flex-direction: column;
   position: relative;
-  filter: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
+  filter: $dropShadow;
   .page-title-container {
     margin: 10px 0;
     font-size: 45px;
@@ -26,6 +53,25 @@ $clr-form-background: #fcfcfc;
     text-align: left;
     width: 80%;
   }
+}
+
+.sidebar-container,
+.services-container,
+.create-password-container,
+.service-details-container {
+  background-color: $clr-form-background;
+  filter: $dropShadow;
+  border-radius: 5px;
+}
+
+.services-container,
+.create-password-container,
+.service-details-container {
+  overflow-y: auto;
+  width: 1200px;
+  height: 90vh;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 .form-container {

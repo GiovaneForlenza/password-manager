@@ -11,6 +11,7 @@
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
     "buffer": "^6.0.3",
+    "crypto": "^1.0.1",
     "dotenv": "^16.0.0",
     "jsonwebtoken": "^8.5.1",
     "node-sass": "^7.0.1",
