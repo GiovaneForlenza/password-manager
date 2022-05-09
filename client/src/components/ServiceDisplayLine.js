@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import "../style/components/service-container-table.scss";
 
@@ -11,27 +11,25 @@ function ServiceDisplayLine({ service, id, setWhatToShow }) {
 
   const { setService } = useContext(SelectedServiceContext);
 
-  const colorSelection = [
-    "#2E5661",
-    "#005DA2",
-    "#393483",
-    "#038AF1",
-    "#80AFBB",
-    "#514BC1",
-    "#8D8ECA",
-  ];
+  const [clickedPassword, setClickedPassword] = useState(false);
+  const [showDetails, setShowDetails] = useState(true);
 
   function getServiceFirstLetter(service) {
     return service.substring(0, 1).toUpperCase();
   }
 
-  function getServiceLetterColor() {
-    return colorSelection[Math.floor(Math.random() * colorSelection.length)];
-  }
-
   function trimSecondsFromTime(dateTime) {
     return dateTime.substring(0, dateTime.indexOf(":") + 3);
   }
+
+  useEffect(() => {
+    if (clickedPassword) {
+      setShowDetails(false);
+    } else {
+      setShowDetails(true);
+    }
+    setClickedPassword(false);
+  }, [clickedPassword]);
 
   return (
     <tr
@@ -44,10 +42,7 @@ function ServiceDisplayLine({ service, id, setWhatToShow }) {
     >
       <td className="column name">
         <div className="flex">
-          <div
-            className="left"
-            style={{ backgroundColor: getServiceLetterColor() }}
-          >
+          <div className="left" style={{ backgroundColor: service.hexColor }}>
             <span>{getServiceFirstLetter(service.serviceName)}</span>
           </div>
           <div className="right">
@@ -68,7 +63,10 @@ function ServiceDisplayLine({ service, id, setWhatToShow }) {
         </div>
         <div
           className="show-hide-password-container"
-          onClick={() => setShowPassword(() => !showPassword)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowPassword(() => !showPassword);
+          }}
         >
           {showPassword ? <AiFillEye /> : <AiFillEyeInvisible />}
         </div>

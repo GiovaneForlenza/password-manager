@@ -14,6 +14,9 @@ function ServicePasswordDetails({ setWhatToShow }) {
         <div className="left" onClick={() => setWhatToShow("vault")}>
           <AiOutlineArrowLeft />
         </div>
+        <div className="right">
+          <div className="service-name-container">{service.serviceName}</div>
+        </div>
       </div>
     </div>
   );

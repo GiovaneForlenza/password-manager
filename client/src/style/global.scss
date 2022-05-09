@@ -90,7 +90,7 @@ $dropShadow: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
     flex-direction: column;
     .input-container {
       position: relative;
-      span {
+      .span-container {
         position: absolute;
         top: 15px;
         left: 15px;
@@ -103,6 +103,9 @@ $dropShadow: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
         user-select: none;
         &:hover {
           cursor: text;
+        }
+        .field-required {
+          color: red;
         }
       }
       input {
@@ -123,8 +126,8 @@ $dropShadow: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
           border-color: $clr-primary-dark;
         }
       }
-      input:focus + span,
-      input:not(:placeholder-shown) + span {
+      input:focus + .span-container,
+      input:not(:placeholder-shown) + .span-container {
         font-size: 15px;
         top: -10px;
         background: $clr-form-background;

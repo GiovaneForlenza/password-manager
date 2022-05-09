@@ -5,13 +5,12 @@ import "../style/components/sidebar.scss";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BiLockAlt } from "react-icons/bi";
 import { GlobalFunctionsContext } from "../contexts/GlobalFunctionsContext";
+import { UserContext } from "../contexts/UserContext";
 
 function Sidebar({ setWhatToShow, whatToShow }) {
   const [selectedElement, setSelectedElement] = useState("vault");
 
-  const { getDocumentElementById, addClass, removeClass } = useContext(
-    GlobalFunctionsContext
-  );
+  const { username } = useContext(UserContext);
 
   function handleClick(whatShows) {
     setWhatToShow(whatShows);
@@ -20,7 +19,7 @@ function Sidebar({ setWhatToShow, whatToShow }) {
   return (
     <div className="sidebar-container">
       <div className="line">
-        <div className="title">Your password Manager</div>
+        <div className="title">Welcome, {username}</div>
       </div>
       <div className="line">
         <div

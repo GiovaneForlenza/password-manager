@@ -21,6 +21,7 @@ function PasswordVault({ retrievedServices, setWhatToShow }) {
                   service={service}
                   id={id}
                   setWhatToShow={setWhatToShow}
+                  key={id}
                 />
               );
             })}

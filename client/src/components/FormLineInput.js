@@ -8,6 +8,7 @@ function FormLineInput({
   errorText,
   buttonText,
   onClick,
+  required,
 }) {
   return (
     <>
@@ -26,7 +27,10 @@ function FormLineInput({
               id={inputId}
               autoComplete="off"
             />
-            <span htmlFor="">{spanText}</span>
+            <div className="span-container">
+              <span htmlFor="">{spanText}</span>
+              {required && <span className="field-required">*</span>}
+            </div>
           </div>
           <div className="error username hidden" id={errorId}>
             {errorText}

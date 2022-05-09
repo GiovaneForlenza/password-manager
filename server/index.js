@@ -114,20 +114,26 @@ app.post("/createServicePassword", (req, res) => {
   const {
     passwordId,
     userIdLogged,
-    username,
-    encryptedPassword,
     serviceName,
+    username,
+    email,
+    link,
+    encryptedPassword,
     dateTime,
+    hexColor,
   } = req.body;
   db.query(
-    "INSERT INTO passwords(passwordId, userId, username,  password, serviceName, dateTimeCreated) values(?,?,?,?,?,?)",
+    "INSERT INTO passwords(passwordId, userId,serviceName, username,email, link, password, dateTimeCreated, hexColor) values(?,?,?,?,?,?,?,?,?)",
     [
       passwordId,
       userIdLogged,
-      username,
-      encryptedPassword,
       serviceName,
+      username,
+      email,
+      link,
+      encryptedPassword,
       dateTime,
+      hexColor,
     ]
   );
 });
