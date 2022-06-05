@@ -6,6 +6,7 @@ const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
 const jwt = require("jsonwebtoken");
+const { rmSync } = require("fs");
 
 require("dotenv").config();
 
@@ -98,10 +99,28 @@ app.post("/registerUser", (req, res) => {
   ]);
 });
 
+app.post("/updateServiceInfo", (req, res) => {
+  const { passwordId, serviceName, username, email, link, password, dateTime } =
+    req.body;
+  try {
+    db.query(
+      "UPDATE passwords SET serviceName = ?, username = ?, email = ?, link = ?, password = ?, dateTimeLastUpdated = ? WHERE passwordId = ?",
+      [serviceName, username, email, link, password, dateTime, passwordId],
+      (error) => {
+        if (error) res.send(error);
+        res.send("completed");
+      }
+    );
+  } catch (err) {
+    console.log(err);
+  }
+});
+
 app.post("/getStoredPasswordsFromUser", (req, res) => {
-  const userId = req.body.userId;
+  const { userId } = req.body;
+
   db.query(
-    "SELECT * FROM passwords WHERE userId = ?",
+    `SELECT * FROM passwords WHERE userId = ?`,
     [userId],
     (error, rows) => {
       if (error) return error;
@@ -134,7 +153,11 @@ app.post("/createServicePassword", (req, res) => {
       encryptedPassword,
       dateTime,
       hexColor,
-    ]
+    ],
+    (error) => {
+      if (error) res.send(error);
+      res.send("completed");
+    }
   );
 });
 

@@ -42,14 +42,6 @@
       overflow: hidden;
       font-size: 20px;
     }
-    .show-hide-password-container {
-      font-size: 20px;
-      z-index: 10;
-      line-height: 20px;
-      &:hover {
-        cursor: pointer;
-      }
-    }
   }
   .column.date-time {
     user-select: none;

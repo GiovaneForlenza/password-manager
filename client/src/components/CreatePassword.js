@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { ErrorHandlingContext } from "../contexts/ErrorHandlingContext";
 import FormLineInput from "./FormLineInput";
 
@@ -12,6 +12,7 @@ import { encrypt, decrypt } from "../handlers/EncryptionHandler";
 
 import axios from "axios";
 import { PasswordContext } from "../contexts/PasswordContext";
+import { ModalContext } from "../contexts/ModalContext";
 const bcrypt = require("bcryptjs");
 
 function CreatePassword() {
@@ -20,6 +21,7 @@ function CreatePassword() {
   const { getDocumentElementById, getCurrentDateTime, getRandomId } =
     useContext(GlobalFunctionsContext);
   const { previousColor, setPreviousColor } = useContext(PasswordContext);
+  const { setShowModal, setModalToShow } = useContext(ModalContext);
 
   const colorSelection = [
     "#2E5661",
@@ -86,18 +88,35 @@ function CreatePassword() {
 
       const hexColor = getServiceLetterColor();
 
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/createServicePassword`, {
-        passwordId,
-        userIdLogged,
-        serviceName,
-        username,
-        email,
-        link,
-        encryptedPassword,
-        dateTime,
-        hexColor,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/createServicePassword`,
+        {
+          passwordId,
+          userIdLogged,
+          serviceName,
+          username,
+          email,
+          link,
+          encryptedPassword,
+          dateTime,
+          hexColor,
+        }
+      );
+
+      if (response.data === "completed") {
+        setShowModal(true);
+        setModalToShow("simpleModal");
+        clearFields();
+      }
     }
+  }
+
+  function clearFields() {
+    getDocumentElementById("create-password-username").value = "";
+    getDocumentElementById("create-password-email").value = "";
+    getDocumentElementById("create-password-service-link").value = "";
+    getDocumentElementById("create-password-password").value = "";
+    getDocumentElementById("create-password-service-name").value = "";
   }
 
   return (

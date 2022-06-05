@@ -5,7 +5,7 @@ $clr-primary-light: #60e1e1;
 
 $clr-form-background: #fcfcfc;
 
-$dropShadow: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
+$dropShadow: drop-shadow(5px 5px 5px rgba(174, 174, 192, 0.4));
 
 * {
   /* width */
@@ -58,7 +58,9 @@ $dropShadow: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
 .sidebar-container,
 .services-container,
 .create-password-container,
-.service-details-container {
+.service-details-container,
+.service-details-container .content .container,
+.content .field {
   background-color: $clr-form-background;
   filter: $dropShadow;
   border-radius: 5px;
@@ -143,20 +145,6 @@ $dropShadow: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
     .error.hidden {
       display: none;
     }
-    .button-container {
-      background-color: $clr-primary;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 40px;
-      font-size: 25px;
-      padding: 10px;
-      border-radius: 5px;
-      &:hover {
-        cursor: pointer;
-      }
-    }
     .create-acc-container {
       margin-top: 20px;
       text-align: left;
@@ -167,5 +155,29 @@ $dropShadow: drop-shadow(10px 10px 10px rgba(174, 174, 192, 0.4));
         cursor: pointer;
       }
     }
+  }
+}
+
+.button-container {
+  background-color: $clr-primary;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-size: 25px;
+  padding: 10px;
+  border-radius: 5px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.show-hide-password-container {
+  font-size: 20px;
+  z-index: 10;
+  line-height: 20px;
+  &:hover {
+    cursor: pointer;
   }
 }

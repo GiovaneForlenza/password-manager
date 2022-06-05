@@ -1,0 +1,29 @@
+@import "../global.scss";
+
+.buttonContainer {
+  width: 200px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.primary {
+  // border: 3px $clr-primary solid;
+  background-color: $clr-primary;
+}
+
+.secondary {
+  // border: 3px $clr-text-gray solid;
+  background-color: $clr-text-gray;
+}
+
+.primary,
+.secondary {
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+}

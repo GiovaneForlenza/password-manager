@@ -6,10 +6,11 @@ import CreatePassword from "../components/CreatePassword";
 
 import "../style/components/password-dashboard.scss";
 import PasswordVault from "./PasswordVault";
-import ServicePasswordDetails from "./ServicePasswordDetails";
+import ServicePasswordDetails from "./ServicePasswordDetails/ServicePasswordDetails";
+import ShowModal from "./Modal/ShowModal";
 
 function PasswordDashboard({ whatToShow, setWhatToShow }) {
-  const { userId } = useContext(UserContext);
+  const { userId, sortingBy, sortingAsc } = useContext(UserContext);
 
   const [retrievedServices, setRetrievedServices] = useState({});
 
@@ -22,16 +23,33 @@ function PasswordDashboard({ whatToShow, setWhatToShow }) {
     setRetrievedServices(retrievedStoredPasswords.data);
   }
 
+  function sortPasswords() {
+    let temp;
+    if (sortingAsc) {
+      temp = retrievedServices.sort((a, b) =>
+        a[sortingBy] > b[sortingBy] ? 1 : -1
+      );
+    } else {
+      temp = retrievedServices.sort((a, b) =>
+        a[sortingBy] < b[sortingBy] ? 1 : -1
+      );
+    }
+    // setRetrievedServices(temp);
+  }
+
   useEffect(() => {
     getStoredPasswords();
+    // sortPasswords();
   }, [whatToShow]);
 
   return (
     <div className="password-dashboard-container">
+      <ShowModal />
       {whatToShow === "vault" ? (
         <PasswordVault
           retrievedServices={retrievedServices}
           setWhatToShow={setWhatToShow}
+          getStoredPasswords={getStoredPasswords}
         />
       ) : whatToShow === "create" ? (
         <CreatePassword />

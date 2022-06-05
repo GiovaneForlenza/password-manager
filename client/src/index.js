@@ -8,6 +8,7 @@ import { GlobalFunctionsContextProvider } from "./contexts/GlobalFunctionsContex
 import { UserContextProvider } from "./contexts/UserContext";
 import { PasswordContextProvider } from "./contexts/PasswordContext";
 import { SelectedServiceContextProvider } from "./contexts/SelectedServiceContext";
+import { ModalContextProvider } from "./contexts/ModalContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,7 +18,9 @@ root.render(
         <UserContextProvider>
           <PasswordContextProvider>
             <SelectedServiceContextProvider>
-              <App />
+              <ModalContextProvider>
+                <App />
+              </ModalContextProvider>
             </SelectedServiceContextProvider>
           </PasswordContextProvider>
         </UserContextProvider>
