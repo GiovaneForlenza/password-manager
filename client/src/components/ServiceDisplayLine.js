@@ -4,6 +4,8 @@ import "../style/components/service-container-table.scss";
 
 import { SelectedServiceContext } from "../contexts/SelectedServiceContext";
 
+import { decrypt } from "../handlers/EncryptionHandler";
+
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 function ServiceDisplayLine({ service, id, setWhatToShow }) {
@@ -20,6 +22,10 @@ function ServiceDisplayLine({ service, id, setWhatToShow }) {
 
   function trimSecondsFromTime(dateTime) {
     return dateTime.substring(0, dateTime.indexOf(":") + 3);
+  }
+
+  function decryptPassword() {
+    return decrypt({ password: service.password, iv: service.passwordIv });
   }
 
   useEffect(() => {
@@ -54,7 +60,7 @@ function ServiceDisplayLine({ service, id, setWhatToShow }) {
       <td className="column password">
         <div className="password-container">
           {showPassword ? (
-            <div className="password">{service.password}</div>
+            <div className="password">{decryptPassword()}</div>
           ) : (
             <div className="password-hidden">
               <span>*****************</span>

@@ -142,7 +142,7 @@ app.post("/createServicePassword", (req, res) => {
     hexColor,
   } = req.body;
   db.query(
-    "INSERT INTO passwords(passwordId, userId,serviceName, username,email, link, password, dateTimeCreated, hexColor) values(?,?,?,?,?,?,?,?,?)",
+    "INSERT INTO passwords(passwordId, userId,serviceName, username, email, link, password, passwordIv, dateTimeCreated, hexColor) values(?,?,?,?,?,?,?,?,?,?)",
     [
       passwordId,
       userIdLogged,
@@ -150,7 +150,9 @@ app.post("/createServicePassword", (req, res) => {
       username,
       email,
       link,
-      encryptedPassword,
+      encryptedPassword.password,
+      encryptedPassword.iv,
+
       dateTime,
       hexColor,
     ],

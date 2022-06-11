@@ -66,6 +66,11 @@ $dropShadow: drop-shadow(5px 5px 5px rgba(174, 174, 192, 0.4));
   border-radius: 5px;
 }
 
+.service-details-container .content .container:last-child {
+  filter: none;
+  padding: 0;
+}
+
 .services-container,
 .create-password-container,
 .service-details-container {
@@ -159,8 +164,8 @@ $dropShadow: drop-shadow(5px 5px 5px rgba(174, 174, 192, 0.4));
 }
 
 .button-container {
-  background-color: $clr-primary;
-  color: #fff;
+  background-color: #d0efd4;
+  color: #31a74d;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -168,9 +173,14 @@ $dropShadow: drop-shadow(5px 5px 5px rgba(174, 174, 192, 0.4));
   font-size: 25px;
   padding: 10px;
   border-radius: 5px;
+  font-weight: 500;
   &:hover {
     cursor: pointer;
   }
+}
+.button-container.button-delete {
+  background-color: #f6c0c0;
+  color: #ff5251;
 }
 
 .show-hide-password-container {

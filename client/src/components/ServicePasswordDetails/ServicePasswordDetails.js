@@ -13,14 +13,15 @@ function ServicePasswordDetails({ setWhatToShow }) {
   const { service, selectedService, setSelectedService } = useContext(
     SelectedServiceContext
   );
-  const { setShowModal, setModalToShow } = useContext(ModalContext);
+  const { setShowModal, setModalToShow, setModalText, setModalHeader } =
+    useContext(ModalContext);
 
   useEffect(() => {
     setSelectedService(service);
   }, []);
   const [showPassword, setShowPassword] = useState(false);
 
-  function handleClick() {
+  function handleSaveClick() {
     if (service !== selectedService) {
       setShowModal(true);
       setModalToShow("alterSavedServicePassword");
@@ -28,6 +29,12 @@ function ServicePasswordDetails({ setWhatToShow }) {
       setShowModal(true);
       setModalToShow("noAlterationServicePassword");
     }
+  }
+
+  function handleDeleteClick() {
+    setShowModal(true);
+    setModalToShow("simpleModal");
+    setModalToShow("deleteServiceModal");
   }
 
   return (
@@ -41,6 +48,7 @@ function ServicePasswordDetails({ setWhatToShow }) {
         </div>
       </div>
       <div className="content">
+        {/* Main info */}
         <div className="container">
           <FormLine
             selectedService={selectedService}
@@ -71,6 +79,8 @@ function ServicePasswordDetails({ setWhatToShow }) {
             setShowPassword={setShowPassword}
           />
         </div>
+
+        {/* Secondary info */}
         <div className="container">
           <FormLine
             selectedService={selectedService}
@@ -79,12 +89,21 @@ function ServicePasswordDetails({ setWhatToShow }) {
             whatToEdit={"link"}
           />
         </div>
-        <div className="line">
-          <FormLineInput
-            inputType={"submit"}
-            buttonText={"Save service"}
-            onClick={handleClick}
-          />
+        <div className="container">
+          {/* Buttons */}
+          <div className="line flex">
+            <FormLineInput
+              inputType={"submit"}
+              buttonText={"Save service"}
+              onClick={handleSaveClick}
+            />
+            <FormLineInput
+              inputType={"submit"}
+              buttonText={"Delete service"}
+              buttonDelete
+              onClick={handleDeleteClick}
+            />
+          </div>
         </div>
       </div>
     </div>

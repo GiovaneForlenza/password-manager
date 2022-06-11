@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../style/components/service-password-details.scss";
+
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+
+import { decrypt } from "../../handlers/EncryptionHandler";
 
 function FormLine({
   isPassword,
@@ -20,7 +23,10 @@ function FormLine({
             {showPassword ? (
               <input
                 type="text"
-                value={selectedService[whatToEdit]}
+                value={decrypt({
+                  password: selectedService[whatToEdit],
+                  iv: selectedService.passwordIv,
+                })}
                 name={whatToEdit}
                 onChange={(e) => {
                   const { name, value } = e.target;

@@ -9,12 +9,16 @@ function FormLineInput({
   buttonText,
   onClick,
   required,
+  buttonDelete,
 }) {
   return (
     <>
       {inputType === "submit" ? (
-        <div className="line">
-          <div className="button-container" onClick={onClick}>
+        <div className="">
+          <div
+            className={`button-container ${buttonDelete && "button-delete"}`}
+            onClick={onClick}
+          >
             {buttonText}
           </div>
         </div>

@@ -6,7 +6,13 @@ function PrimarySecondaryButton({ text, onClick, btnClass }) {
   return (
     <div
       className={`buttonContainer ${
-        btnClass === "primary" ? "primary" : "seconday"
+        btnClass === "primary"
+          ? "primary"
+          : btnClass === "secondary"
+          ? "seconday"
+          : btnClass === "alert"
+          ? "alert"
+          : ""
       }`}
       onClick={onClick}
     >

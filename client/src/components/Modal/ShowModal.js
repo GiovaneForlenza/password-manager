@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
 
 import "../../style/components/modal.scss";
 import AlterSavedServicePasswordModal from "./AlterSavedServicePassword/AlterSavedServicePasswordModal";
 import NoAlterationServiceModal from "./AlterSavedServicePassword/NoAlterationServiceModal";
 import PasswordSavedModal from "./AlterSavedServicePassword/PasswordSavedModal";
+import DeleteServiceModal from "./DeleteServiceModal/DeleteServiceModal";
 import PasswordAddedModal from "./PasswordAddedModal";
 import SimpleModal from "./SimpleModal";
 
@@ -26,6 +27,8 @@ function ShowModal() {
             <AlterSavedServicePasswordModal />
           ) : modalToShow === "simpleModal" ? (
             <SimpleModal />
+          ) : modalToShow === "deleteServiceModal" ? (
+            <DeleteServiceModal />
           ) : (
             <div className="modal">Modal</div>
           )}

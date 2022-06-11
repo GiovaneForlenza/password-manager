@@ -8,11 +8,12 @@ import "../style/components/create-password.scss";
 import { UserContext } from "../contexts/UserContext";
 import { GlobalFunctionsContext } from "../contexts/GlobalFunctionsContext";
 
-import { encrypt, decrypt } from "../handlers/EncryptionHandler";
+import { encrypt } from "../handlers/EncryptionHandler";
 
-import axios from "axios";
 import { PasswordContext } from "../contexts/PasswordContext";
 import { ModalContext } from "../contexts/ModalContext";
+
+import axios from "axios";
 const bcrypt = require("bcryptjs");
 
 function CreatePassword() {
@@ -82,8 +83,7 @@ function CreatePassword() {
       ).value;
 
       const salt = await bcrypt.genSalt();
-      const encryptedPassword = await bcrypt.hash(password, salt);
-
+      const encryptedPassword = encrypt(password);
       const dateTime = getCurrentDateTime();
 
       const hexColor = getServiceLetterColor();

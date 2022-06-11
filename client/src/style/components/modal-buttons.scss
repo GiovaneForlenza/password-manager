@@ -12,18 +12,22 @@
 }
 
 .primary {
-  // border: 3px $clr-primary solid;
   background-color: $clr-primary;
+  color: #fff;
 }
 
 .secondary {
-  // border: 3px $clr-text-gray solid;
   background-color: $clr-text-gray;
 }
 
+.alert {
+  background-color: #f6c0c0;
+  color: #ff5251;
+}
+
 .primary,
-.secondary {
+.secondary,
+.alert {
   border-radius: 5px;
-  color: #fff;
   font-size: 20px;
 }
